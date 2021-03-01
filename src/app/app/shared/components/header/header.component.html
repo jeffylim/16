@@ -1,0 +1,19 @@
+<header class="row">
+  <div class="col-12">
+  <nav class="navbar navbar-expand-sm navbar-dark bg-primary">
+    <div class="container-fluid">
+      <a class="navbar-brand" [routerLink]="'/'">Список сотрудников</a>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" routerLinkActive="active" [routerLink]="'/'" [routerLinkActiveOptions]="{exact:true}">Главная</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="'/workers'" [routerLinkActive]="'active'">Список сотрудников</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</div>
+</header>
