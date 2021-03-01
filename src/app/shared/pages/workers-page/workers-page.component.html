@@ -1,0 +1,125 @@
+<ng-container>
+  <div class="row">
+    <div class="col-12">
+      <form [formGroup]="editFormGroup">
+        <table class="table table-warning">
+          <thead>
+            <tr>
+              <th scope="col">Фамилия</th>
+              <th scope="col">Имя</th>
+              <th scope="col">Возраст</th>
+              <th scope="col">Отдел</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let worker of workers
+              | filterBySurnames: worker.split(' ')[0]
+              | filterByNames:worker.split(' ')[1]
+              "
+            >
+              <ng-container *ngIf="editId !== worker.id; else editTemlate">
+                <td>{{ worker.secondName }}</td>
+                <td>{{ worker.firstName }}</td>
+                <td>{{ worker.birthday | age}}</td>
+                <td [classList]="'table-' + (worker.role % 2 === 0 ? 'success' : 'primary')">{{worker.role | role}}</td>
+              </ng-container>
+              <ng-template #editTemlate>
+                <td>
+                    <input
+                      formControlName="secondName"
+                      type="text"
+                      placeholder="Фамилия сотрудника"
+                      class="form-control-sm form-control"
+                    />
+                </td>
+                <td>
+                    <input
+                      formControlName="firstName"
+                      type="text"
+                      placeholder="Имя сотрудника"
+                      class="form-control-sm form-control"
+                    />
+                </td>
+                <td class="d-flex">
+                    <input
+                      formControlName="birthday"
+                      placeholder="Дата рождения"
+                      class="form-control-sm form-control"
+                      name="dp"
+                      ngbDatepicker #d="ngbDatepicker"
+                      [readonly]="true"
+                    />
+                    <div class="input-group-append">
+                      <button class="btn btn-primary btn-sm" (click)="d.toggle()" type="button"><i-bs name="calendar3"></i-bs></button>
+                    </div>
+                </td>
+                <td>
+                    <select
+                     class="custom-select custom-select-sm"
+                     formControlName="role"
+                     >
+                      <option [ngValue]="type.IT">IT</option>
+                      <option [ngValue]="type.Marketing">Маркетинговый</option>
+                      <option [ngValue]="type.Delivery">Доставки</option>
+                      <option [ngValue]="type.Law">Юридический</option>
+                    </select>
+                </td>
+              </ng-template>
+              <td>
+                <button
+                  class="btn btn-outline-danger btn-sm"
+                  (click)="onDeleteWorker(worker.id)"
+                  type="button"
+                >
+                <span class="material-icons">
+                  delete
+                </span>
+                </button>
+              </td>
+              <td>
+                <button
+                  class="btn btn-warning btn-sm"
+                  *ngIf="editId !== worker.id"
+                  type="button"
+                  (click)="onEditWorker(worker)"
+                >
+                <span class="material-icons">
+                  create
+                </span>
+                </button>
+                <button
+                  class="btn btn-success btn-sm"
+                  *ngIf="editId === worker.id"
+                  (click)="onUpdateWorker()"
+                  type="submit"
+                  [disabled]="editFormGroup.invalid"
+                >
+                  <span class="material-icons">
+                    check_circle_outline
+                  </span>
+                </button>
+              </td>
+              <td>
+                <app-modal [worker]="worker"></app-modal>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </form>
+      <app-add-worker (addedWorker)="onAddWorker($event)"></app-add-worker>
+      <div class="center">
+        <h2>
+          <label for="filter" class="form-label">Найти сотрудника</label>
+        </h2>
+          <input
+            type="text"
+            [(ngModel)]="worker"
+            class="form-control col-2"
+            id="filter"
+            placeholder="Иванов Иван"
+          />
+        </div>
+    </div>
+  </div>
+</ng-container>
