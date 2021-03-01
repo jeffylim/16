@@ -1,0 +1,63 @@
+<button class="btn btn-primary btn-custom" (click)="openModal(mymodal)">
+  <span class="material-icons">
+  add
+  </span>
+</button>
+<ng-template #mymodal let-modal>
+  <div class="modal-header">
+    <h2 class="modal-title" id="modal-basic-title">Добавить сотрудника</h2>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">×</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="addFormGroup">
+      <div class="mb-2">
+        <label for="firstName" class="form-label">Имя</label>
+        <input type="text" formControlName="firstName" class="form-control form-control-sm" id="firstName" placeholder="Иван">
+      </div>
+      <div class="mb-2">
+        <label for="secondName" class="form-label">Фамилия</label>
+        <input type="text" formControlName="secondName" class="form-control form-control-sm" id="secondName" placeholder="Иванов">
+      </div>
+      <div class="mb-2">
+        <label for="middleName" class="form-label">Отчество</label>
+        <input type="text" formControlName="middleName" class="form-control form-control-sm" id="middleName" placeholder="Иванович">
+      </div>
+      <div class="mb-2">
+        <label for="email" class="form-label">Email address</label>
+        <input type="email" formControlName="email" class="form-control form-control-sm" id="email" placeholder="name@example.com">
+      </div>
+      <div class="mb-3">
+        <label for="phone" class="form-label">Моб.Телефон</label>
+        <input type="text" formControlName="phone" [textMask]="{mask: mask}" class="form-control form-control-sm" id="phone" placeholder="+7 (999) 999-99-99">
+      </div>
+      <div class="mb-3" style="display:flex;">
+        <input
+            formControlName="birthday"
+            placeholder="Дата рождения"
+            class="form-control-sm form-control"
+            name="dp"
+            ngbDatepicker #d="ngbDatepicker"
+            [readonly]="true"
+            id="birthday"
+          />
+        <div class="input-group-append">
+          <button class="btn btn-primary btn-sm" (click)="d.toggle()" type="button"><i-bs name="calendar3"></i-bs></button>
+        </div>
+      </div>
+      <div>
+        <label for="role" class="form-label">Отдел</label>
+        <select class="custom-select custom-select-sm" id="role" formControlName="role">
+          <option [ngValue]="type.IT">IT</option>
+          <option [ngValue]="type.Marketing">Маркетинговый</option>
+          <option [ngValue]="type.Delivery">Доставки</option>
+          <option [ngValue]="type.Law">Юридический</option>
+        </select>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" [disabled]="addFormGroup.invalid" class="btn btn-success btn-sm" (click)="addWorker(modal)">Добавить</button>
+  </div>
+</ng-template>
