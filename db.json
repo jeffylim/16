@@ -1,0 +1,60 @@
+{
+  "workers": [
+    {
+      "id": 2,
+      "firstName": "Петр",
+      "secondName": "Петров",
+      "middleName": "Петрович",
+      "phone": "+7 (972) 312-31-45",
+      "email": "petrov@gmail.com",
+      "birthday": {
+        "year": 1987,
+        "month": 1,
+        "day": 22
+      },
+      "role": 1
+    },
+    {
+      "id": 3,
+      "firstName": "Сидр",
+      "secondName": "Сидоров",
+      "middleName": "Сидорович",
+      "phone": "+7 (979) 868-75-64",
+      "email": "sidorov@mail.ru",
+      "birthday": {
+        "year": 1997,
+        "month": 1,
+        "day": 27
+      },
+      "role": 0
+    },
+    {
+      "id": 4,
+      "firstName": "Алексей",
+      "secondName": "Алексеев",
+      "middleName": "Алексеевич",
+      "phone": "+7 (973) 332-21-44",
+      "email": "alekseev@mail.ru",
+      "birthday": {
+        "year": 1998,
+        "month": 2,
+        "day": 25
+      },
+      "role": 2
+    },
+    {
+      "id": 5,
+      "firstName": "Иван",
+      "secondName": "Иванов",
+      "middleName": "Иванович",
+      "email": "ivanov@mail.ru",
+      "phone": "+7 (913) 123-33-22",
+      "birthday": {
+        "year": 1951,
+        "month": 6,
+        "day": 23
+      },
+      "role": 3
+    }
+  ]
+}
